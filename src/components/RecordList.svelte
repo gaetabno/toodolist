@@ -1,24 +1,19 @@
 <script>
     import RecordItem from "./RecordItem.svelte";
-    import {recordList, recordCheckedList} from "../lib/store.js";
+    import {recordList} from "../lib/store.js";
+    import SearchRecord from "./SearchRecord.svelte";
+
+    $: num = $recordList.length;
+
+    $: list = $recordList;
 </script>
 
-<div class="grid grid-cols-1 py-5">
-    <div class="py-3">
-        <h3 class="text-lg font-bold">Record da svolgere</h3>
+<h3 class="text-lg font-bold py-2">{num} Record da svolgere</h3>
 
-        {#each $recordList as item (item)}
-            <RecordItem record={item} />
-        {:else}
-            non ci sono record da svolgere
-        {/each}
-    </div>
-    <div class="py-3">
-        <h3 class="text-lg font-bold">Record già fatti</h3>
-        {#each $recordCheckedList as item (item)}
-            <RecordItem record={item} />
-        {:else}
-            non ci sono record già fatti
-        {/each}
-    </div>
-</div>
+<SearchRecord {list} />
+
+{#each list as item (item)}
+    <RecordItem record={item} />
+{:else}
+    <div class="py-2">non ci sono record da svolgere</div>
+{/each}
