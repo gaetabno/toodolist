@@ -1,19 +1,21 @@
 <script>
-    import RecordItem from "./RecordItem.svelte";
-    import {recordList} from "../lib/store.js";
-    import SearchRecord from "./SearchRecord.svelte";
+  import RecordItem from "./RecordItem.svelte";
+  import { recordList } from "../lib/store.js";
+  import SearchRecord from "./SearchRecord.svelte";
+  export let typeList;
 
-    $: num = $recordList.length;
+  // $: list = $recordList.filter((list) => list.state === typeList);
+  $: list = $recordList.filter((item) => item.state === typeList && item.active === true);
 
-    $: list = $recordList;
+  $: num = list.length;
 </script>
 
-<h3 class="text-lg font-bold py-2">{num} Record da svolgere</h3>
+<h3 class="text-lg font-bold py-2">{num} Record {typeList}</h3>
 
-<SearchRecord {list} />
+<SearchRecord {typeList} />
 
-{#each list as item (item)}
-    <RecordItem record={item} />
+{#each list  as item (item)}
+  <RecordItem record={item} active={item.active}/>
 {:else}
-    <div class="py-2">non ci sono record da svolgere</div>
+  <div class="py-2">non ci sono record {typeList}</div>
 {/each}

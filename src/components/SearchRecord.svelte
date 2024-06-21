@@ -1,29 +1,13 @@
 <script>
-    export let list;
+// @ts-nocheck
+  import { searchRecords } from "../lib/store";
 
-    import {createEventDispatcher} from "svelte";
-
-    // const dispatch = createEventDispatcher();
-
-    // function searchedText() {
-    //     dispatch("list", {
-    //         list,
-    //     });
-    // }
-
-    $: value = "";
-
-    $: value, handleSearch();
-
-    const handleSearch = () => {
-        list = list.filter(({item}) => value);
-        console.log(list);
-    };
+  export let typeList
 </script>
 
 <input
-    type="text"
-    bind:value
-    placeholder="Cerca Record"
-    class="input input-sm input-bordered"
+  on:input={(e) => searchRecords(e.target.value,typeList)}
+  type="text"
+  placeholder="Cerca Record"
+  class="input input-sm input-bordered"
 />

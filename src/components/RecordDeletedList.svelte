@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     import {recordDeletedList} from "../lib/store";
     import RecordItem from "./RecordItem.svelte";
 
@@ -45,4 +45,4 @@
     .svg-active {
         transform: scale(1);
     }
-</style>
+</style> -->

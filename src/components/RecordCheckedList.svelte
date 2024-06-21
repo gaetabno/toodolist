@@ -1,6 +1,6 @@
-<script>
+<!-- <script>
     import RecordItem from "./RecordItem.svelte";
-    import {recordCheckedList} from "../lib/store.js";
+    // import {recordCheckedList} from "../lib/store.js";
 
     $: num = $recordCheckedList.length;
 </script>
@@ -10,4 +10,4 @@
     <RecordItem record={item} />
 {:else}
     non ci sono record già fatti
-{/each}
+{/each} -->

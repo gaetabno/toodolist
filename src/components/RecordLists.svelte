@@ -1,29 +1,28 @@
 <script>
-    import {recordList, recordCheckedList} from "../lib/store.js";
+  import { recordList } from "../lib/store";
+  import RecordList from "./RecordList.svelte";
 
-    import RecordList from "./RecordList.svelte";
-    import RecordCheckedList from "./RecordCheckedList.svelte";
-    import RecordDeletedList from "./RecordDeletedList.svelte";
+  $: total = $recordList.filter((item) => item.state !== "trash").length;
+  $: completed = $recordList.filter((item) => item.state === "checked").length;
 
-    $: numRecordList = $recordList.length;
-    $: numRecordCheckedList = $recordCheckedList.length;
-    $: sumRecords = numRecordList + numRecordCheckedList;
-    $: missingRecords = sumRecords - numRecordList;
+  recordList;
 </script>
 
 <div class="grid grid-cols-1 py-5">
-    <div class="py-3">
-        <progress
-            class="progress progress-success transision-all"
-            value={missingRecords}
-            max={sumRecords}
-        ></progress>
-    </div>
-    <div class="py-3">
-        <RecordList />
-    </div>
-    <div class="py-3">
-        <RecordCheckedList />
-    </div>
+  <div class="py-3">
+    <progress
+      class="progress progress-success transision-all"
+      value={completed}
+      max={total}
+    ></progress>
+  </div>
+  <div class="py-3">
+    <RecordList typeList={"todo"} />
+  </div>
+  <div class="py-3">
+    <RecordList typeList={"checked"} />
+  </div>
+  <div class="py-3">
+    <RecordList typeList={"trash"} />
+  </div>
 </div>
-<RecordDeletedList />
