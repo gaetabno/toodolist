@@ -1,7 +1,6 @@
 <script>
   import { handleState } from "./../lib/store.js";
-  export let record;
-  export let active;
+  export let record; 
   let openConfirm = false;
 
   let { item, state } = record;

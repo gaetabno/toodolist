@@ -1,15 +1,16 @@
 <script>
   import { recordList, addRecordToList } from "../lib/store.js";
 
-  let value;
-  $: value;
+  $: value = "";
+  $: id = 0;
 </script>
 
 <form
   class="grid gap-4"
   on:submit|preventDefault={() => {
-    addRecordToList(value);
+    addRecordToList(value, id);
     value = "";
+    id++;
   }}
 >
   <input

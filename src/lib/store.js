@@ -2,16 +2,13 @@ import {
     writable
 } from "svelte/store";
 
-export const recordList = writable([{
-    active: true,
-    item: "Pippo",
-    state: "todo"
-}]);
+export const recordList = writable([]);
 
 
 
-export const addRecordToList = (value) => {
+export const addRecordToList = (value,id) => {
     const newRecord = {
+        id,
         item: value,
         state: "todo",
         active: true
@@ -26,7 +23,7 @@ export const addRecordToList = (value) => {
 export const handleState = (currentItem, state) => {
     recordList.update(list => {
         list.map(r => {
-            if (r.item === currentItem.item) r.state = state
+            if (r.id === currentItem.id) r.state = state
         })
         return list
     });
